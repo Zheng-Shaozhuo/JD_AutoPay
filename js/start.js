@@ -9,20 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('zidong').style.display = 'none';
 		}
 	});
-	chrome.storage.local.get('isAutoRe', function(result) {
-		console.log(result.isAutoRe);
-		if (10 == result.isAutoRe) {
-			document.getElementById('autoRechecbox').checked = true;
-		} else {
-			document.getElementById('autoRechecbox').checked = false;
-		}
-	});
+
 	chrome.storage.local.get('yuyueTime', function(result) {
 		console.log(result.yuyueTime);
 		if (0 != result.yuyueTime) {
+			document.getElementById('autoRechecbox').checked = true;
 			document.getElementById('time').value = result.yuyueTime;
 		} else {
 			document.getElementById('time').value = 1000;
+			document.getElementById('autoRechecbox').checked = false;
 		}
 	});
 	
@@ -41,9 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 			document.getElementById('zidong').style.display = 'none';
 			document.getElementById('autoRechecbox').checked = false;
-			chrome.storage.local.set({'isAutoRe': 99}, function() {
-				console.info('存储成功');
-			});
+			chrome.storage.local.set({'yuyueTime': 0}, function() {});
 		}
 	};
 
@@ -52,24 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		var vv = document.getElementById('autoRechecbox').checked;
 		var time = document.getElementById('time').value;
 		if (true == vv) {
-			chrome.storage.local.set({'isAutoRe': 10}, function() {
-				chrome.storage.local.set({'yuyueTime': time}, function() {});
-				console.info('存储成功');
-			});
+			chrome.storage.local.set({'yuyueTime': time}, function() {});
 		} else {
-			chrome.storage.local.set({'isAutoRe': 99}, function() {
-				chrome.storage.local.set({'yuyueTime': 0}, function() {});
-				console.info('存储成功');
-			});
+			chrome.storage.local.set({'yuyueTime': 0}, function() {});
 		}
 	};
 
 	//预约刷新
 	document.getElementById('time').onchange = function() {
 		document.getElementById('autoRechecbox').checked = false;
-		chrome.storage.local.set({'isAutoRe': 99}, function() {
-			chrome.storage.local.set({'yuyueTime': 0}, function() {});
-			console.info('存储成功');
-		});
+		chrome.storage.local.set({'yuyueTime': 0}, function() {});
 	};
 });
