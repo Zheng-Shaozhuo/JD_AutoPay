@@ -6,15 +6,26 @@
 	<title>京东抢购</title>
 	<link rel="stylesheet" href="">
 	<style>
-		#box{width: 120px; height: auto; border-radius: 4px; padding-bottom: 10px;}
+		#box{width: 140px; height: auto; border-radius: 4px; padding-bottom: 10px;}
 	</style>
 	<script src="../js/start.js"></script>
 </head>
 <body>
-	<div id="box">
-		<h3>自动抢购</h3>
+	<div id="box" style="text-align: right;">
+		<h3 style="text-align: left;">自动抢购</h3>
 		<label for="checbox" id="label">是否开启自动抢购</label>
 		<input name="checbox" id="checbox" type="checkbox" value="自动" />
+		<div id="zidong" style="text-align: right; margin-top: 4px;">
+			<select name="time" id="time">
+				<option value="1000">1000</option>
+				<option value="2000">2000</option>
+				<option value="3000">3000</option>
+				<option value="800">800</option>
+				<option value="500">500</option>
+			</select>
+			<label for="autoRechecbox" id="autoRelabel" style="color: red;">预约刷新</label>
+			<input name="checbox" id="autoRechecbox" type="checkbox" value="自动" />
+		</div>
 	</div>
 </body>
 </html>
